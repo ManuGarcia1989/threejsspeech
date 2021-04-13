@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - '80:80'
+      - '443:443'
+    environment:
+      DOMAINS: 'threejs.manuel-garciaromero.com -> http://socket_server:3001'
+      STAGE: 'production' # Don't use production until staging works
+    volumes:
+      - https-portal-data:/var/lib/https-portal    
+    links:
+      - socket_server
+  socket_server:
+    #build: .
+    image: node:14
+    ports:
+      - "3001"
+      - "5001"
+    container_name: socket_server
+    working_dir: /usr/src/app
+    command: >
+      /bin/sh -c "npm install && node index.js"
+    volumes:
+      - ./:/usr/src/app
+    restart: always
+
+
+    
+volumes:
+    https-portal-data:

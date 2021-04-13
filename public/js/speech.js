@@ -43,8 +43,6 @@ socket.on('servermessage',( payload) => {
 
     if(payload == "Bailar" || payload == "bailar"){
         mixer.removeEventListener( 'finished', restoreState );
-        mixer.action.clampWhenFinished = true;
-        mixex.action.loop = THREE.LoopOnce;
         activeAction = actions[ 'Dance' ];
         activeAction.play();
     }

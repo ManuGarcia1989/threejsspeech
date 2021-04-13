@@ -13,7 +13,7 @@ services:
       - https-portal-data:/var/lib/https-portal
     links:
       - socket_server
-  socket_server2:
+  socket_server:
     #build: .
     image: node:14
     ports:

@@ -32,16 +32,23 @@ socket.on('disconnect', () => {
 socket.on('servermessage',( payload) => {
     console.log(payload);
     if(payload == "caminar" || payload == "Caminar"){
+        activeAction = actions[ 'Idle' ];
+        activeAction.play();
+    
         mixer.removeEventListener( 'finished', restoreState );
         fadeToAction("Walking",0.5);  
     }
 
     if(payload == "correr" || payload == "Correr"){
+        activeAction = actions[ 'Idle' ];
+        activeAction.play();    
         mixer.removeEventListener( 'finished', restoreState );
         fadeToAction("Running",0.5);  
     }
 
     if(payload == "Bailar" || payload == "bailar"){
+        activeAction = actions[ 'Idle' ];
+        activeAction.play();    
         mixer.removeEventListener( 'finished', restoreState );
         activeAction = actions[ 'Dance' ];
         activeAction.play();
@@ -163,7 +170,7 @@ function init() {
             actions[ clip.name ] = action;
     
         }
-        activeAction = actions[ 'Walking' ];
+        activeAction = actions[ 'Idle' ];
     activeAction.play();
 
         createGUI( model, gltf.animations );

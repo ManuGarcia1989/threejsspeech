@@ -282,9 +282,6 @@ function createGUI( model, animations ) {
 
     }
 
-    activeAction = actions[ 'Walking' ];
-    activeAction.play();
-
     expressionFolder.open();
 
 }
